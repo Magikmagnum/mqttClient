@@ -1,11 +1,11 @@
 {
-    "host": "broker.emqx.io'",
+    "host": "broker.ssi-soft.fr",
     "port": "1883'",
-    "username": "emqx'",
-    "password": "public'",
-    "caFile": "../certificats/ca.crt",
-    "certFile": "../certificats/client.crt",
-    "keyFile": "../certificats/client.key",
+    "username": "",
+    "password": "",
+    "caFile": "services/mqttService/certificats/ca.crt",
+    "certFile": "services/mqttService/certificats/client.crt",
+    "keyFile": "services/mqttService/certificats/client.key",
     "clean": true,
     "connectTimeout": 3000,
     "reconnectPeriod": 1000
