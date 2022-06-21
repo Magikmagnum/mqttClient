@@ -1,18 +1,22 @@
 // On instancie express
 const app = require('express')();
 // On cree le serveur HTTP; 
-const http = require('http').createServer(app);
+const serverHttp = require('http').createServer(app);
 // On instancie le websoket http
-const io = require('socket.io')(http);
+const { Server } = require("socket.io");
+const io = new Server(serverHttp);
 
 
-
-
-
-// On ecoute l'evenement "connection" de socket.io
+// On ecoute l'evenement "connection" du socket.io, pour savoir si un utilisateur c'est connecté
 io.on('connection', (socket) => {
-    console.log(socket)
-})
+    console.log('a user connected');
+
+    // On ecoute l'evenement "disconnect" du socket.io, pour savoir si un utilisateur c'est déconnecté
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+});
+
 
 // On cree une route index
 app.get("/", (req, res) => {
@@ -21,9 +25,16 @@ app.get("/", (req, res) => {
 
 
 // On precise le port de reponse http sur le 3000
-http.listen(3000, () => {
+serverHttp.listen(3000, () => {
     console.log("j'ecoute le port 3000");
 })
+
+
+
+
+
+
+
 
 
 /*
